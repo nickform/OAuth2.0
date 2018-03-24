@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect,jsonify, url_for, flash
+import os
 app = Flask(__name__)
 
 from sqlalchemy import create_engine, asc
@@ -142,4 +143,4 @@ def deleteMenuItem(restaurant_id,menu_id):
 if __name__ == '__main__':
   app.secret_key = 'super_secret_key'
   app.debug = True
-  app.run(host = '0.0.0.0', port = 5000)
+  app.run(host = os.getenv("HOST", '0.0.0.0'), port = int(os.getenv("PORT", 8080)))
